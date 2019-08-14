@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        /* 该种布局方式，如果改变.wrap元素的宽度，则#right元素的宽度也会随之改变 */
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .wrap {
+            /* width: 900px; */  /*给父元素设置固定宽度时，则#right元素宽度不会随着窗口的调整而改变*/
+            width: 80%;  /*给父元素设置百分比宽度时，则#right元素宽度会随着窗口的调整而缩放*/
+            margin: 0 auto;
+        }
+        #left {
+            width: 200px;
+            height: 600px;
+            background: #eac;
+            float: left;
+        }
+        #right {
+            /* border: 1px solid red; */
+            height: 600px;
+            background: #a0a;
+            margin-left: 200px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <aside id="left">#left</aside>
+        <div id="right">#right</div>
+    </div>
+</body>
+</html>
