@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .tab span {
+      display: inline-block;
+      width: 200px;
+      background: #ccc;
+      text-align: center;
+    }
+    .content {
+      position: relative;
+    }
+    ul, li {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+    li {
+      float: left;
+      width:100px;
+      height: 100px;
+      background: rgb(249, 255, 162);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .active {
+      background: red !important;
+    }
+  </style>
+  <script>
+    window.onload = function() {
+      var arrImage = ["./1.png", "./2.png", "./3.png"];
+      var aSpan = document.getElementsByTagName('span');
+      var oImg = document.getElementById('image');
+      var aUl = document.getElementsByTagName('ul');
+      var pNum = 0;
+      var num = 0;
+      
+      function nextImage() {
+        var aLi = aUl[pNum].getElementsByTagName('li');
+        aLi[num].className = '';
+        num ++ ;
+        if (num > 2) {
+          num = 0;
+          changeUl();
+        }
+        aLi[num].className = 'active';
+        oImg.src = arrImage[num%arrImage.length];
+      }
+
+      function changeUl() {
+        aSpan[pNum].className = '';
+        aUl[pNum].style.display = 'none';
+        pNum++;
+        if(pNum>1) {
+          pNum = 0;
+        }
+        aSpan[pNum].className = 'active';
+        aUl[pNum].style.display = 'block';
+      }
+      setInterval(nextImage, 1000);
+    };
+  </script>
+</head>
+<body style="width: 960px;margin: 0 auto;">
+  <div class="tab">
+    <span class="active">
+      菜单一
+    </span>
+    <span>
+      菜单二
+    </span>
+  </div>   
+  <div class="content">
+    <img id="image" src="./1.png" />
+    <ul>
+      <li class="active">图片1</li>
+      <li>图片2</li>
+      <li>图片3</li>
+    </ul>
+    <ul class="active" style="display: none;">
+      <li class="active">图片4</li>
+      <li>图片5</li>
+      <li>图片6</li>
+    </ul>
+  </div>   
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        #box {
+            width: 150px;
+            height: 320px;
+            border: 1px solid red;
+            position: relative;
+        }
+        #top,
+        #bottom {
+            width: 100%;
+            height: 30px;
+            background: sandybrown;
+            position: absolute;
+            text-align: center;
+            line-height: 30px;
+            z-index: 1;
+        }
+        #top {
+            top: 0;
+        }
+        #bottom {
+            bottom: 0;
+        }
+        #content {
+            width: 150px;
+            height: 320px;
+            overflow: hidden;
+            position: absolute;
+            left: 0;
+            top: 0;
+            border: 1px solid green;
+        }
+        #ul {
+            position: absolute;
+            top: -200px;
+            left: 0;
+        }
+        li {
+            list-style: none;
+
+        }
+        img {
+            width: 150px;
+            height: 80px;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div id="top">上</div>
+        <div id="content">
+            <ul id='ul'>
+                <li>
+                    <img src='../JS8-函数返回值、定时器基础课件/img/1.jpg'>
+                </li>
+                <li>
+                    <img src='../JS8-函数返回值、定时器基础课件/img/2.jpg'>
+                </li>
+                <li>
+                    <img src='../JS8-函数返回值、定时器基础课件/img/3.jpg'>
+                </li>
+                <li>
+                    <img src='../JS8-函数返回值、定时器基础课件/img/1.jpg'>
+                </li>
+                <li>
+                    <img src='../JS8-函数返回值、定时器基础课件/img/1.jpg'>
+                </li>
+                <li>
+                    <img src='../JS8-函数返回值、定时器基础课件/img/1.jpg'>
+                </li>
+                <li>
+                    <img src='../JS8-函数返回值、定时器基础课件/img/1.jpg'>
+                </li>
+               
+            </ul>
+
+        </div>
+        <div id="bottom">下</div>
+    </div>
+    <script src='../../通用方法/fn1.js'></script>
+    <script>
+        var aTop = $('top');
+        var aBottom = $('bottom');
+        var aContent = $('content');
+        var aUl = $('ul');
+        var speed;
+        aTop.onmousedown  = function(){
+            clearInterval(aUl.timer);
+            aUl.timer = setInterval(function(){
+                 speed = parseFloat(getStyle(aUl,'top'))+ -12;
+                //  if(speed>=)
+                if(speed<=-320){
+                    speed = 0;
+                }
+                aUl.style.top = speed+'px';
+            },20);
+        };
+        aTop.onmouseup = function(){
+            clearInterval(aUl.timer);
+        }
+        aBottom.onmousedown = function(){
+            clearInterval(aUl.timer);
+            aUl.timer = setInterval(function(){
+                speed = parseFloat(getStyle(aUl,'top')) + 12;
+                if(speed>=0){
+                    speed = -100;
+                }
+                aUl.style.top = speed+'px';
+            },20);
+        };
+        aBottom.onmouseup = function(){
+            clearInterval(aUl.timer);
+        }
+    </script>
+</body>
+</html>

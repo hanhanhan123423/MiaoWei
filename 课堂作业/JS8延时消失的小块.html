@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        #qq {
+            width: 200px;
+            height: 300px;
+            background: navajowhite;
+        }
+        #box {
+            width: 100px;
+            height: 100px;
+            background: salmon;
+            display: none;
+            position: absolute;
+            left: 220px;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="qq"></div>
+    <div id="box"></div>
+    <script src='../../通用方法/fn1.js'></script>
+    <script>
+        var qq = $('qq');
+        var box = $('box');
+        qq.onmouseover = show;
+        qq.onmouseout = hide;
+
+        box.onmouseover = show;
+        box.onmouseout = hide;
+
+        function show(){
+            clearTimeout(box.timer);
+            box.style.display = 'block';
+        }
+        function hide(){
+            box.timer = setTimeout(function(){
+                box.style.display = 'none';
+            },200);
+        }
+    </script>
+</body>
+</html>

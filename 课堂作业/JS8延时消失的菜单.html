@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+         * {
+             margin: 0;
+             padding: 0;
+         }
+         li {
+             list-style: none;
+         }
+         a {
+             text-decoration: none;
+         }
+         #wrap {
+             width: 460px;
+             height: 35px;
+             border: 1px solid red;
+             /* line-height: 40px; */
+         }
+         .outLi {
+             position: relative;
+         }
+         #lis li {
+             float: left;
+             padding: 2px;
+         }
+         .outLi a {
+             display: block;
+             border-right: 1px solid salmon;
+             padding: 5px 15px;
+             text-decoration: none;
+         }
+         .inner {
+             display: none;
+             position: absolute;
+             top: 50px;
+         }
+         .inner li {
+             float: left;
+             margin-right: 20px;
+             /* border: 1px solid blanchedalmond; */
+         }
+         .inner a {
+             display: block;
+             padding: 5px;
+         }
+         .inner {
+             border: 1px solid salmon;
+         }
+         .active {
+             background: navajowhite;
+             border-radius: 5px;
+         }
+         .inner a:hover {
+             text-decoration: underline;
+         }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <ul id='lis'>
+            <li class="outLi">
+                <a href='#' class="title">首页</a>
+            </li>
+            <li class="outLi">
+                <a href='#' class="title">关于我们</a>
+            </li>
+            <li class="outLi">
+                <a href='#' class="title">作品</a>
+            </li>
+            <li class="outLi">
+                <a href='#' class="title">博客</a>
+            </li>
+        </ul>
+        <div id='inT'>
+            <ul class='inner'>
+                    <li><a href='#'>11111</a></li>
+                    <li><a href='#'>222</a></li>
+                    <li><a href='#'>333</a></li>
+            </ul>
+            <ul class='inner'>
+                    <li><a href='#'>44</a></li>
+                    <li><a href='#'>555</a></li>
+                    <li><a href='#'>6666</a></li>
+                    <li><a href='#'>7777</a></li>
+            </ul>
+            <ul class='inner'>
+                    <li><a href='#'>88</a></li>
+                    <li><a href='#'>000</a></li>
+                    <li><a href='#'>111</a></li>
+            </ul>
+            <ul class='inner'>
+                    <li><a href='#'>11111</a></li>
+                    <li><a href='#'>222</a></li>
+                    <li><a href='#'>333</a></li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        var aTitle = document.getElementsByClassName('title');
+        var aInner = document.getElementsByClassName('inner');
+        var that;
+        for(var i=0;i<aTitle.length;i++){
+            aTitle[i].index = i;
+            aInner[i].index = i;
+            aTitle[i].onmouseover = show;
+            aTitle[i].onmouseout = hide;
+            
+            aInner[i].onmouseover = show;
+            aInner[i].onmouseout = hide;
+            
+            function show(){
+                    // 设置当前标题下面的子菜单
+                clearTimeout(aInner[this.index].timer);
+                for(var j=0;j<aTitle.length;j++){
+
+                    // 设置当前选中的标题样式
+                    aTitle[j].classList.remove('active');
+                    aTitle[this.index].classList.add('active');
+
+                    aInner[j].style.display = 'none';
+                    aInner[this.index].style.display = 'block';
+                }
+            }
+            function hide(){
+                that = this.index;
+                aInner[this.index].timer = setTimeout(function(){
+                    aInner[that].style.display = 'none';
+                },200);
+            }
+        }
+    </script>
+</body>
+</html>

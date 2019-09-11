@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            left: 20px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <input type="button" value="点击按钮动起来" id='btn'>
+    <div id="box"></div>
+    <script src="../../通用方法/fn1.js"></script>
+    <script>
+        // var oBtn = document.getElementsByTagName('input')[0];
+        var oBtn = $('btn');
+        var oBox = $('box');
+        var speed;
+        // var currentS;
+        $(function(){
+            oBtn.onclick = function(){
+                clearInterval(oBox.timer);
+                oBox.timer = setInterval(function(){
+                    speed = parseFloat(getStyle(oBox,'left')) + 12;
+                    if(speed>=200){
+                        speed=200;
+                    }
+                    oBox.style.left = speed +'px';
+                },100);
+            }
+        })
+    </script>
+</body>
+</html>

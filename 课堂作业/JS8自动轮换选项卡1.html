@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .wrap {
+            width: 200px;
+            height: 150px;
+            border: 1px solid red;
+            position: relative;
+        }
+        .title {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 150px;
+            height: 30px;
+        }
+        ul {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+        }
+        img {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            left: 10px;
+            top: 30px;
+        }
+        ul:last-child {
+            display: none;
+        }
+        li {
+            list-style: none;
+            margin-bottom: 10px;
+            background: gray;
+            padding: 5px;
+        }
+        span{
+            padding: 5px;
+            background: gray;
+        }
+        .active {
+            background: salmon;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="title">
+            <span class="active">风景</span>
+            <span>人物</span>
+        </div>
+        <div class="content">
+            <img src="../../JavaScript基础部分/JS8-函数返回值、定时器基础课件/img/1.jpg" alt="" id="image">
+        </div>
+        <ul>
+            <li class="active">图片1</li>
+            <li>图片2</li>
+            <li>图片3</li>
+        </ul>
+        <ul>
+            <li class="active">图片4</li>
+            <li>图片5</li>
+            <li>图片6</li>
+        </ul>
+    </div>
+    <script>
+        var aTabs = document.getElementsByClassName('title')[0].getElementsByTagName('span');
+        var aImg = document.getElementById('image');
+        var aUl = document.getElementsByTagName('ul');
+        var arr = [
+            '../../JavaScript基础部分/JS9-定时器管理、函数封装课件/img/1.jpg',
+            '../../JavaScript基础部分/JS9-定时器管理、函数封装课件/img/2.jpg',
+            '../../JavaScript基础部分/JS9-定时器管理、函数封装课件/img/3.jpg',
+            '../../JavaScript基础部分/JS9-定时器管理、函数封装课件/img/4.jpg',
+            '../../JavaScript基础部分/JS9-定时器管理、函数封装课件/img/5.jpg',
+            '../../JavaScript基础部分/JS9-定时器管理、函数封装课件/img/6.jpg',
+            
+        ];
+        var num = 0;
+        var numT = 0;
+        var numI = 0;
+        function nextImg(){
+            var lis = aUl[numT].getElementsByTagName('li');
+            lis[num].className = '';
+            num++;
+            numI++;
+            if(num>2){
+                num = 0;
+                // numT = 1;
+                changeUl();
+            }
+            lis[num].className = 'active';
+            aImg.src = arr[numI%arr.length];
+        }
+        function changeUl(){
+            aTabs[numT].className='';
+            aUl[numT].style.display= 'none';
+            numT++;
+            if(numT>1){
+                numT=0;
+            }
+            aTabs[numT].className='active';
+            aUl[numT].style.display='block';
+        }
+        setInterval(nextImg,1000);
+    </script>
+</body>
+</html>
